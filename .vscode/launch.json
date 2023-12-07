@@ -1,0 +1,11 @@
+{
+    "name": "(Windows) Launch",
+    "type": "cppvsdbg",
+    "request": "launch",
+    "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}.exe",
+    "preLaunchTask": "rust: cargo build",
+    "args": [],
+    "stopAtEntry": false,
+    "environment": [],
+    "console": "externalTerminal"
+}
