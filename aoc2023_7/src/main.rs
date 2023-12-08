@@ -64,7 +64,7 @@ fn main() -> Result<(), Box<dyn Error>> {
          println!("{}","====================================================================================");
     }
     hands.sort_by(compare_hands2);
-    if DEBUG {
+    if !DEBUG {
         for hand in &hands {
             println!("{}", "hand: ".to_string() + &hand.0.to_string() + " " + &rank_hand2(hand.0.to_string()).to_string());
         }
@@ -102,23 +102,15 @@ fn rank_hand(hand:String) -> u32 {
     }
     let mut score:Vec<u32> = cards.iter().map(|(_key,val)| *val as u32).collect::<Vec<u32>>();
     score.sort_by_key(|w| Reverse(*w));
-    
     let mut hand_type:u8 = 0;
-
     if score[0] == 5 {hand_type = 7;}
-
     if score[0] == 4 {hand_type = 6;}
-
     if score[0] == 3 && score[1] == 2 {hand_type = 5;}
     else if score[0] == 3 && score[1] == 1 {hand_type = 4;}
-
     if score[0] == 2 && score[1] == 2 {hand_type = 3;}
     else if score[0] == 2 && score[1] == 1 {hand_type = 2;}
-
     if score[0] == 1 {hand_type = 1;};
-
     rank = rank | (hand_type as u32) << 24;
-
     return rank;
 
 }
@@ -133,10 +125,7 @@ fn rank_hand2(hand:String) -> u32 {
         cards.entry(char).or_insert(0);
         cards.entry(char).and_modify(|x| *x += 1);
     }
-
-    
     let mut card_map = cards.iter().map(|(key, val)| (*key, *val)).collect::<Vec<(char,i32)>>();
-    
     card_map.sort_by(|a,b| b.1.cmp(&a.1));
     if cards.contains_key(&'J') { 
         let mut keep_joker = false;
@@ -158,19 +147,13 @@ fn rank_hand2(hand:String) -> u32 {
     let mut score:Vec<u32> = cards.iter().map(|(_key,val)| *val as u32).collect::<Vec<u32>>();
     score.sort_by_key(|w| Reverse(*w));
     if score[0] == 5 {hand_type = 7;}
-
     if score[0] == 4 {hand_type = 6;}
-
     if score[0] == 3 && score[1] == 2 {hand_type = 5;}
     else if score[0] == 3 && score[1] == 1 {hand_type = 4;}
-
     if score[0] == 2 && score[1] == 2 {hand_type = 3;}
     else if score[0] == 2 && score[1] == 1 {hand_type = 2;}
-
     if score[0] == 1 {hand_type = 1;};
-
     rank = rank | (hand_type as u32) << 24;
-
     return rank;
 
 }
