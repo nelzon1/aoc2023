@@ -1,0 +1,10 @@
+LR
+
+FRA = (FRB, XXX)
+FRB = (XXX, FRZ)
+FRZ = (FRB, XXX)
+DRA = (DRB, XXX)
+DRB = (DRC, DRC)
+DRC = (DRZ, DRZ)
+DRZ = (DRB, DRB)
+XXX = (XXX, XXX)
