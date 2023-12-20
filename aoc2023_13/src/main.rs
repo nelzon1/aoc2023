@@ -5,7 +5,7 @@
 
 
 */
-use ndarray::{Array2, ArrayView, Axis, ViewRepr, ArrayBase, Dim};
+use ndarray::{Array2, ArrayView, Axis};
 use std::error::Error;
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -82,7 +82,7 @@ fn find_mirror_score(puzzle:&Array2<char>) -> u64 {
         if compare_2(puzzle.column(i).to_vec(), puzzle.column(i+1).to_vec()) {
             let mut valid_reflection = true;
             for j in 1..i+1 {
-                if i-j < 0 || i+j+2 > puzzle.ncols() {break};
+                if i+j+2 > puzzle.ncols() {break};
                 if compare_2(puzzle.column(i-j).to_vec(), puzzle.column(i+1+j).to_vec()) {
 
                 }
@@ -104,7 +104,7 @@ fn find_mirror_score(puzzle:&Array2<char>) -> u64 {
         if compare_2(puzzle.row(i).to_vec(), puzzle.row(i+1).to_vec()) {
             let mut valid_reflection = true;
             for j in 1..i+1 {
-                if i-j < 0 || i+j+2 > puzzle.nrows() {break};
+                if i+j+2 > puzzle.nrows() {break};
                 if compare_2(puzzle.row(i-j).to_vec(), puzzle.row(i+1+j).to_vec()) {
 
                 }
@@ -140,7 +140,7 @@ fn find_mirror_score2(puzzle:&Array2<char>) -> u64 {
         if mismatches <= 1 {
             let mut valid_reflection = true;
             for j in 1..i+1 {
-                if i-j < 0 || i+j+2 > puzzle.ncols() {break};
+                if i+j+2 > puzzle.ncols() {break};
                 mismatches += compare_4(puzzle.column(i-j).to_vec(), puzzle.column(i+1+j).to_vec());
                 if mismatches > 1 {
                     valid_reflection = false;
@@ -162,7 +162,7 @@ fn find_mirror_score2(puzzle:&Array2<char>) -> u64 {
         if mismatches <= 1 {
             let mut valid_reflection = true;
             for j in 1..i+1 {
-                if i-j < 0 || i+j+2 > puzzle.nrows() {break};
+                if i+j+2 > puzzle.nrows() {break};
                 mismatches += compare_4(puzzle.row(i-j).to_vec(), puzzle.row(i+1+j).to_vec());
                 if mismatches > 1 {
                     valid_reflection = false;
